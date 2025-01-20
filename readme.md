@@ -14,6 +14,12 @@ This repository contains an implementation of Huffman Coding using a Min Heap. H
 - `heap.h` - Function prototypes
 - `main.c` - Example usage of Huffman Coding
 
+
+## To Implement
+- [] Emit huffman tree
+- [] Proper `main.c` file to run tests
+- [] `run.sh` needs to be fixes 
+
 ## How to Run
 
 1. Clone the repository:
@@ -36,3 +42,4 @@ This project is licensed under the MIT License.
 ## Acknowledgements
 
 - This implementation is based on the principles of Huffman Coding and Min Heap data structures.
+
