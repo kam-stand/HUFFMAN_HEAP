@@ -1,7 +1,6 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 #define HEAP_SIZE 1024
 
@@ -127,3 +126,17 @@ Node *build_huffman_tree(HEAP *h) {
     return extract_min(h);
 }
 
+int main(void)
+{
+    HEAP *h = create_heap(1000);
+
+    char vals[] = "aacbbs";
+    build_min_heap(h, vals);
+
+    for(int i = 0; i< h->size; i++)
+    {
+        printf("{%c:%d}\n", h->nodes[i]->val,h->nodes[i]->freq );
+    }
+
+    return 0;
+}
