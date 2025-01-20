@@ -1,7 +1,7 @@
-gcc -Wall -Wextra ./src/heap.c  ./src/main.c -o out
+#!/bin/bash
 
-mv ./src/out ./bin
+bin="./bin"
 
-"./bin/out"
+gcc -Wall -Wextra ./src/main.c ./src/heap.c -o $bin/out
 
-
+./$bin/out

@@ -80,6 +80,13 @@ void swap(HEAP *h, int a , int b);
 void insert(HEAP *h, char val);
 
 
+/**
+ * @brief Extract min from the heap
+ * 
+ * @param h 
+ * @return Node* 
+ */
+Node *extract_min(HEAP *h);
 
 /**
  * @brief Maintain the min heap propery after insertion
@@ -106,5 +113,15 @@ void heapify(HEAP *h, int idx);
  * @param vals 
  */
 void build_min_heap(HEAP *h, char *vals);
+
+
+/**
+ * @brief Function to build huffman tree
+ * 
+ * @param h 
+ * @return Node* 
+ */
+Node *build_huffman_tree(HEAP *h);
+
 
 #endif

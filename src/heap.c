@@ -1,6 +1,7 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define HEAP_SIZE 1024
 
@@ -76,6 +77,21 @@ int insert(HEAP *h, char val) {
     return 1;
 }
 
+
+Node *extract_min(HEAP *h)
+{
+    if(h->size <= 0)
+    {
+        printf("No nodes in heao\n");
+        return NULL;
+    }
+    Node *min = h->nodes[0];
+    h->nodes[0] = h->nodes[h->size -1];
+    h->size--;
+    heapify(h, 0);
+
+    return min;
+}
 void build_min_heap(HEAP *h, char *vals) {
     for (int i = 0; vals[i] != '\0'; i++) {
         int index = found(h, vals[i]);
@@ -90,12 +106,24 @@ void build_min_heap(HEAP *h, char *vals) {
     }
 }
 
-int main(void) {
-    char vals[] = "abbcdd";
-    HEAP *h = create_heap(100);
-    build_min_heap(h, vals);
-    for (int i = 0; i < h->size; i++) {
-        printf("{%c:%d}\n", h->nodes[i]->val, h->nodes[i]->freq);
+Node *build_huffman_tree(HEAP *h) {
+    while (h->size > 1) {
+        // Extract the two smallest nodes
+        Node *left = extract_min(h);
+        Node *right = extract_min(h);
+
+        // Create a new internal node
+        Node *new_node = create_node('\0'); // '\0' for non-leaf internal nodes
+        new_node->freq = left->freq + right->freq;
+        new_node->left = left;
+        new_node->right = right;
+
+        // Insert the new node back into the heap
+        h->nodes[h->size++] = new_node;
+        heapify_up(h, h->size - 1);
     }
-    return 0;
+
+    // The remaining node in the heap is the root of the Huffman tree
+    return extract_min(h);
 }
+
