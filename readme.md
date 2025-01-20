@@ -16,9 +16,9 @@ This repository contains an implementation of Huffman Coding using a Min Heap. H
 
 
 ## To Implement
-- [x] Emit huffman tree
-- [ ] Proper `main.c` file to run tests
-- [ ] `run.sh` needs to be fixes 
+- [X] Emit huffman tree
+- [X] Proper `main.c` file to run tests
+- [X] `run.sh` needs to be fixes 
 
 ## How to Run
 

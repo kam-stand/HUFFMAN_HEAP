@@ -1,7 +1,8 @@
 #!/bin/bash
-
+source_file="./src/heap.c"
+main_file="./src/main.c"
 bin="./bin"
 
-gcc -Wall -Wextra ./src/main.c ./src/heap.c -o $bin/out
+gcc -Wall -Wextra $source_file $main_file -o $bin/out
 
 ./$bin/out

@@ -132,4 +132,18 @@ Node *build_huffman_tree(HEAP *h);
  */
 int isLeaf(Node *n);
 
+
+
+
+
+/**
+ * @brief Generates the binary codes 
+ * 
+ * @param root 
+ * @param current_code 
+ * @param depth 
+ * @param codes 
+ */
+void generate_codes(Node *root, char *current_code, int depth, char codes[256][256]);
+
 #endif

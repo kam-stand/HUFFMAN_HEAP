@@ -2,16 +2,25 @@
 #include <stdio.h>
 
 
-int main(void)
-{
-    HEAP *h = create_heap(1000);
+int main(void) {
+    char input[] = "aaaaabbbbbbbbbccccccccccccdddddddddddddeeeeeeeeeeeeeeeefffffffffffffffffffffffffffffffffffffffffffff";
+    HEAP *h = create_heap(100);
+    build_min_heap(h, input);
 
-    char vals[] = "aacbbs";
-    build_min_heap(h, vals);
+    // Build Huffman tree
+    Node *root = build_huffman_tree(h);
 
-    for(int i = 0; i< h->size; i++)
-    {
-        printf("{%c:%d}\n", h->nodes[i]->val,h->nodes[i]->freq );
+    // Generate Huffman codes
+    char codes[256][256] = {0}; // Array to store codes for each character
+    char current_code[256];     // Temporary buffer for the current code
+    generate_codes(root, current_code, 0, codes);
+
+    // Print the Huffman codes
+    printf("Huffman Codes:\n");
+    for (int i = 0; i < 256; i++) {
+        if (codes[i][0] != '\0') { // Print only non-empty codes
+            printf("%c: %s\n", (char)i, codes[i]);
+        }
     }
 
     return 0;

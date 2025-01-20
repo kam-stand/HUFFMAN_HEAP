@@ -154,26 +154,3 @@ void generate_codes(Node *root, char *current_code, int depth, char codes[256][2
     generate_codes(root->right, current_code, depth + 1, codes);
 }
 
-int main(void) {
-    char input[] = "accbbc";
-    HEAP *h = create_heap(100);
-    build_min_heap(h, input);
-
-    // Build Huffman tree
-    Node *root = build_huffman_tree(h);
-
-    // Generate Huffman codes
-    char codes[256][256] = {0}; // Array to store codes for each character
-    char current_code[256];     // Temporary buffer for the current code
-    generate_codes(root, current_code, 0, codes);
-
-    // Print the Huffman codes
-    printf("Huffman Codes:\n");
-    for (int i = 0; i < 256; i++) {
-        if (codes[i][0] != '\0') { // Print only non-empty codes
-            printf("%c: %s\n", (char)i, codes[i]);
-        }
-    }
-
-    return 0;
-}
