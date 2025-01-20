@@ -4,9 +4,9 @@ This repository contains an implementation of Huffman Coding using a Min Heap. H
 
 ## Features
 
-- Implementation of Min Heap data structure
-- Construction of Huffman Tree using Min Heap
-- Encoding and decoding of data using Huffman Coding
+- [ ]  Implementation of Min Heap data structure
+- [ ]  Construction of Huffman Tree using Min Heap
+- [ ]   ncoding and decoding of data using Huffman Coding
 
 ## Files
 
