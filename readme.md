@@ -4,9 +4,9 @@ This repository contains an implementation of Huffman Coding using a Min Heap. H
 
 ## Features
 
-- [ ]  Implementation of Min Heap data structure
-- [ ]  Construction of Huffman Tree using Min Heap
-- [ ]   ncoding and decoding of data using Huffman Coding
+- Implementation of Min Heap data structure
+- Construction of Huffman Tree using Min Heap
+- ncoding and decoding of data using Huffman Coding
 
 ## Files
 
@@ -16,9 +16,9 @@ This repository contains an implementation of Huffman Coding using a Min Heap. H
 
 
 ## To Implement
-- [] Emit huffman tree
-- [] Proper `main.c` file to run tests
-- [] `run.sh` needs to be fixes 
+- [x] Emit huffman tree
+- [ ] Proper `main.c` file to run tests
+- [ ] `run.sh` needs to be fixes 
 
 ## How to Run
 
