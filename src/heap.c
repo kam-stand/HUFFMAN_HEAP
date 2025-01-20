@@ -1,7 +1,18 @@
+/**
+ * @file heap.c
+ * @author kam-stand
+ * @brief function implementation of heap.h
+ * @version 0.1
+ * @date 2025-01-20
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #define HEAP_SIZE 1024
 
 typedef struct Node {
@@ -15,7 +26,8 @@ typedef struct HEAP {
     Node **nodes;
 } HEAP;
 
-HEAP *create_heap(int capacity) {
+HEAP *create_heap(int capacity) 
+{
     if (capacity > HEAP_SIZE) {
         printf("Capacity cannot exceed %d\n", HEAP_SIZE);
         return NULL;
@@ -42,22 +54,27 @@ int isLeaf(Node *n)
     
 }
 
-int found(HEAP *h, char value) {
-    for (int i = 0; i < h->size; i++) {
+int found(HEAP *h, char value) 
+{
+    for (int i = 0; i < h->size; i++)
+    {
         if (h->nodes[i]->val == value) return i;
     }
     return -1;
 }
 
-void swap(HEAP *h, int a, int b) {
+void swap(HEAP *h, int a, int b) 
+{
     Node *temp = h->nodes[a];
     h->nodes[a] = h->nodes[b];
     h->nodes[b] = temp;
 }
 
-void heapify_up(HEAP *h, int idx) {
+void heapify_up(HEAP *h, int idx) 
+{
     int parent = (idx - 1) / 2;
-    while (idx > 0 && h->nodes[idx]->freq < h->nodes[parent]->freq) {
+    while (idx > 0 && h->nodes[idx]->freq < h->nodes[parent]->freq) 
+    {
         swap(h, idx, parent);
         idx = parent;
         parent = (idx - 1) / 2;
@@ -68,13 +85,15 @@ void heapify(HEAP *h, int idx) {
     int small = idx, left = 2 * idx + 1, right = 2 * idx + 2;
     if (left < h->size && h->nodes[left]->freq < h->nodes[small]->freq) small = left;
     if (right < h->size && h->nodes[right]->freq < h->nodes[small]->freq) small = right;
-    if (small != idx) {
+    if (small != idx) 
+    {
         swap(h, idx, small);
         heapify(h, small);
     }
 }
 
-int insert(HEAP *h, char val) {
+int insert(HEAP *h, char val) 
+{
     if (h->size == h->capacity) return 0;
     Node *n = create_node(val);
     n->freq = 1;
@@ -98,22 +117,29 @@ Node *extract_min(HEAP *h)
 
     return min;
 }
-void build_min_heap(HEAP *h, char *vals) {
-    for (int i = 0; vals[i] != '\0'; i++) {
+void build_min_heap(HEAP *h, char *vals) 
+{
+    for (int i = 0; vals[i] != '\0'; i++)
+    {
         int index = found(h, vals[i]);
-        if (index != -1) {
+        if (index != -1)
+        {
             h->nodes[index]->freq++;
             heapify(h, index);
-        } else {
-            if (!insert(h, vals[i])) {
+        } else 
+        {
+            if (!insert(h, vals[i]))
+            {
                 printf("Heap is full; cannot process '%c'.\n", vals[i]);
             }
         }
     }
 }
 
-Node *build_huffman_tree(HEAP *h) {
-    while (h->size > 1) {
+Node *build_huffman_tree(HEAP *h)
+{
+    while (h->size > 1)
+    {
         // Extract the two smallest nodes
         Node *left = extract_min(h);
         Node *right = extract_min(h);
@@ -135,7 +161,8 @@ Node *build_huffman_tree(HEAP *h) {
 
 
 // Helper function to traverse the tree and generate codes
-void generate_codes(Node *root, char *current_code, int depth, char codes[256][256]) {
+void generate_codes(Node *root, char *current_code, int depth, char codes[256][256])
+{
     if (!root) return; // Base case: Null node
 
     // If it's a leaf node, store the code for the character

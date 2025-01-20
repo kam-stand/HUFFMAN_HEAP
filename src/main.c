@@ -1,7 +1,16 @@
+/**
+ * @file main.c
+ * @author kam-stand
+ * @brief a driver file to given an example of how the library works
+ * @version 0.1
+ * @date 2025-01-20
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include "../include/heap.h"
 #include <stdio.h>
-
-
 int main(void) {
     char input[] = "aaaaabbbbbbbbbccccccccccccdddddddddddddeeeeeeeeeeeeeeeefffffffffffffffffffffffffffffffffffffffffffff";
     HEAP *h = create_heap(100);
