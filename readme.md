@@ -11,27 +11,23 @@ This repository contains an implementation of Huffman Coding using a Min Heap. H
 ## Files
 
 - `heap.c` - Implementation of Min Heap operations
-- `huffman.c` - Implementation of Huffman Coding algorithm
+- `heap.h` - Function prototypes
 - `main.c` - Example usage of Huffman Coding
 
 ## How to Run
 
 1. Clone the repository:
    ```sh
-   git clone <repository-url>
+   git clone https://github.com/kam-stand/HUFFMAN_HEAP.git
    ```
 2. Navigate to the directory:
    ```sh
-   cd /home/kamhassan/Desktop/Computer_Science/C-PROGRAMMING/DATA_STRUCTURES/HEAP
+   cd HEAP
    ```
 3. Compile the code:
    ```sh
-   gcc -o huffman main.c heap.c huffman.c
-   ```
-4. Run the executable:
-   ```sh
-   ./huffman
-   ```
+   ./run.sh
+   ``` 
 
 ## License
 
