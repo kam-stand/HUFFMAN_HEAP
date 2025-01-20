@@ -1,7 +1,7 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 #define HEAP_SIZE 1024
 
 typedef struct Node {
@@ -33,6 +33,13 @@ Node *create_node(char val) {
     n->freq = 0;
     n->left = n->right = n->parent = NULL;
     return n;
+}
+
+
+int isLeaf(Node *n)
+{
+    return ((!n->left) && (!n->right));
+    
 }
 
 int found(HEAP *h, char value) {
@@ -126,16 +133,46 @@ Node *build_huffman_tree(HEAP *h) {
     return extract_min(h);
 }
 
-int main(void)
-{
-    HEAP *h = create_heap(1000);
 
-    char vals[] = "aacbbs";
-    build_min_heap(h, vals);
+// Helper function to traverse the tree and generate codes
+void generate_codes(Node *root, char *current_code, int depth, char codes[256][256]) {
+    if (!root) return; // Base case: Null node
 
-    for(int i = 0; i< h->size; i++)
-    {
-        printf("{%c:%d}\n", h->nodes[i]->val,h->nodes[i]->freq );
+    // If it's a leaf node, store the code for the character
+    if (isLeaf(root)) {
+        current_code[depth] = '\0'; // Null-terminate the code
+        strcpy(codes[(unsigned char)root->val], current_code);
+        return;
+    }
+
+    // Recur to the left (add '0' to the code)
+    current_code[depth] = '0';
+    generate_codes(root->left, current_code, depth + 1, codes);
+
+    // Recur to the right (add '1' to the code)
+    current_code[depth] = '1';
+    generate_codes(root->right, current_code, depth + 1, codes);
+}
+
+int main(void) {
+    char input[] = "accbbc";
+    HEAP *h = create_heap(100);
+    build_min_heap(h, input);
+
+    // Build Huffman tree
+    Node *root = build_huffman_tree(h);
+
+    // Generate Huffman codes
+    char codes[256][256] = {0}; // Array to store codes for each character
+    char current_code[256];     // Temporary buffer for the current code
+    generate_codes(root, current_code, 0, codes);
+
+    // Print the Huffman codes
+    printf("Huffman Codes:\n");
+    for (int i = 0; i < 256; i++) {
+        if (codes[i][0] != '\0') { // Print only non-empty codes
+            printf("%c: %s\n", (char)i, codes[i]);
+        }
     }
 
     return 0;

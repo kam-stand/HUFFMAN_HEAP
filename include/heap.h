@@ -124,4 +124,12 @@ void build_min_heap(HEAP *h, char *vals);
 Node *build_huffman_tree(HEAP *h);
 
 
+/**
+ * @brief returns 1 if node leaf else -1
+ * 
+ * @param n 
+ * @return int 
+ */
+int isLeaf(Node *n);
+
 #endif
